@@ -1,0 +1,61 @@
+{
+    "name": "g4b0rdev/filament-package-skeleton",
+    "description": "Generate a new Filament package skeleton",
+    "keywords": [
+        "laravel",
+        "filament",
+        "filamentphp",
+        "cli",
+        "skeleton",
+        "filament package development"
+    ],
+    "homepage": "https://laravel-zero.com",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
+        "source": "https://github.com/laravel-zero/laravel-zero"
+    },
+    "authors": [
+        {
+            "name": "Gabor",
+            "email": "enunomaduro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2.0",
+        "binafy/laravel-stub": "^1.0",
+        "laravel-zero/framework": "^11.0.2",
+        "laravel/prompts": "^0.3.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.18.1",
+        "mockery/mockery": "^1.6.12",
+        "pestphp/pest": "^3.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "bin": [
+        "filament-package-skeleton"
+    ]
+}
