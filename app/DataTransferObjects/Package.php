@@ -25,7 +25,7 @@ readonly class Package implements Arrayable
             name: $data['package'],
             vendor: $data['vendor'],
             standalone: $data['standalone'] ?? false,
-            asset: ($data['custom_assets']) ? Asset::from($data['custom_assets']) : null,
+            asset: ($data['assets']) ? Asset::from($data['assets'], $data['custom_assets']) : null,
             testingSetup: $data['testing'] ?? 'pest',
             linters: $data['linters'] ?? [],
         );
