@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
-use Illuminate\Contracts\Support\Arrayable;
-
-readonly class Author implements Arrayable
+readonly class Author
 {
     public function __construct(
         public string $name,
@@ -21,13 +19,5 @@ readonly class Author implements Arrayable
             name: $data['name'],
             email: $data['email'],
         );
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'email' => $this->email,
-        ];
     }
 }
