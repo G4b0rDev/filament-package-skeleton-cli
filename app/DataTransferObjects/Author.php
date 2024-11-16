@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
+/**
+ * @property-read string $name
+ * @property-read string $vendor
+ *
+ * @method static from(array $data)
+ */
 readonly class Author
 {
     public function __construct(
