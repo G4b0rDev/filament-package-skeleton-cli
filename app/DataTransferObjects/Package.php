@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
-use App\Enums\CodeStyle;
-use App\Enums\TestingFramework;
 use Illuminate\Support\Str;
 
 /**
@@ -13,8 +11,6 @@ use Illuminate\Support\Str;
  * @property string $vendor
  * @property FilamentPlugin $filamentPlugin
  * @property Asset $asset
- * @property TestingFramework $testingFramework
- * @property CodeStyle[] $codeStyle
  *
  * @method static Package from(array $data): self
  */
@@ -26,8 +22,6 @@ readonly class Package
         public FilamentPlugin $filamentPlugin,
         public ?Asset $asset,
         public bool $withAssets,
-        public TestingFramework $testingFramework,
-        public array $codeStyle = [],
     ) {
         //
     }
@@ -40,8 +34,6 @@ readonly class Package
             filamentPlugin: FilamentPlugin::from($data),
             asset: $data['assets'] ?? null,
             withAssets: $data['custom_assets'] ?? false,
-            testingFramework: TestingFramework::tryFrom($data['testing']) ?? TestingFramework::Pest,
-            codeStyle: array_map(fn ($value) => CodeStyle::from($value), $data['codeStyle'] ?? []),
         );
     }
 }

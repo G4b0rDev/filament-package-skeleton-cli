@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Actions\Initialize;
 
 use App\DataTransferObjects\Package;
-use App\Enums\CodeStyle;
-use App\Enums\TestingFramework;
 
 use function Laravel\Prompts\form;
 
@@ -61,19 +59,6 @@ class HandlePackageInformation
                 condition: fn ($answers) => $answers['custom_assets'] === true,
                 name: 'assets',
                 step: fn () => ($this->customAssetsForm)(),
-            )
-            ->select(
-                label: 'Which testing framework would you like to use?',
-                options: array_column(TestingFramework::cases(), 'value'),
-                default: 'Pest',
-                required: true,
-                name: 'testing',
-            )
-            ->intro('Code style')
-            ->multiselect(
-                label: 'Which code styler would you like to use?',
-                options: array_column(CodeStyle::cases(), 'value'),
-                name: 'codeStyle',
             )
             ->submit();
 
