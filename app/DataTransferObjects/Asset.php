@@ -4,17 +4,25 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
-use Illuminate\Contracts\Support\Arrayable;
-
-readonly class Asset implements Arrayable
+/**
+ * @property bool $withAssets
+ * @property bool $withCss
+ * @property string|null $cssName
+ * @property bool $withJs
+ * @property string|null $jsName
+ * @property bool $withViews
+ *
+ * @method static Asset from(array $data, bool $withAssets): self
+ */
+readonly class Asset
 {
     public function __construct(
         public bool $withAssets,
-        public bool $tailwindcss,
+        public bool $withCss = false,
         public ?string $cssName = null,
-        public bool $js = false,
+        public bool $withJs = false,
         public ?string $jsName = null,
-        public bool $views = false,
+        public bool $withViews = false,
     ) {
         //
     }
@@ -23,23 +31,11 @@ readonly class Asset implements Arrayable
     {
         return new self(
             withAssets: $withAssets,
-            tailwindcss: $data['tailwindcss'],
-            cssName: $data['cssName'] ?? null,
-            js: $data['js'] ?? false,
-            jsName: $data['jsName'] ?? null,
-            views: $data['views'] ?? false,
+            withCss: $data['withCss'] ?? false,
+            cssName: $data['customCss']['cssName'] ?? null,
+            withJs: $data['withJs'] ?? false,
+            jsName: $data['customJs']['jsName'] ?? null,
+            withViews: $data['withViews'] ?? false,
         );
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'withAssets' => $this->withAssets,
-            'tailwindcss' => $this->tailwindcss,
-            'cssName' => $this->cssName,
-            'js' => $this->js,
-            'jsName' => $this->jsName,
-            'views' => $this->views,
-        ];
     }
 }
