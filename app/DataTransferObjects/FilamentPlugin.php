@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace App\DataTransferObjects;
 
+/**
+ * @property-read bool $isStandalone
+ * @property-read string|null $pluginName
+ *
+ * @method static FilamentPlugin from(array $data)
+ */
 readonly class FilamentPlugin
 {
     public function __construct(
@@ -17,7 +23,7 @@ readonly class FilamentPlugin
     {
         return new self(
             isStandalone: $data['standalone'] ?? false,
-            pluginName: $data['name'] ?? null,
+            pluginName: $data['pluginName'] ?? null,
         );
     }
 }
