@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\DataTransferObjects;
 
 /**
- * @property bool $withAssets
  * @property bool $withCss
  * @property string|null $cssName
  * @property bool $withJs
@@ -17,7 +16,6 @@ namespace App\DataTransferObjects;
 readonly class Asset
 {
     public function __construct(
-        public bool $withAssets,
         public bool $withCss = false,
         public ?string $cssName = null,
         public bool $withJs = false,
@@ -27,10 +25,9 @@ readonly class Asset
         //
     }
 
-    public static function from(array $data, bool $withAssets): self
+    public static function from(array $data): self
     {
         return new self(
-            withAssets: $withAssets,
             withCss: $data['withCss'] ?? false,
             cssName: $data['customCss']['cssName'] ?? null,
             withJs: $data['withJs'] ?? false,
