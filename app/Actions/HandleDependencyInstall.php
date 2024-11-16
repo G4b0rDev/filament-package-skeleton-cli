@@ -12,7 +12,7 @@ class HandleDependencyInstall
 {
     public function __invoke(Package $package): void
     {
-        $basePath = getcwd().'/'.$package->name;
+        $basePath = getcwd() . '/' . $package->name;
 
         Process::concurrently(function (Pool $pool) use ($basePath) {
             $pool
