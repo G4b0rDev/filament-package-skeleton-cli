@@ -22,8 +22,8 @@ readonly class FilamentPlugin
     public static function from(array $data): self
     {
         return new self(
-            isStandalone: $data['standalone'] ?? false,
-            pluginName: $data['pluginName'] ?? null,
+            isStandalone: $data['isStandalone'] ?? false,
+            pluginName: $data['filament']['pluginName'] ?? null,
         );
     }
 }
