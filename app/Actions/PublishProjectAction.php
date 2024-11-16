@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
+use App\Exceptions\ProjectAlreadyExistsException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 
@@ -12,7 +13,7 @@ class PublishProjectAction
     public function __invoke(string $projectName): void
     {
         if (File::exists($projectName)) {
-            throw new \Exception("The project {$projectName} already exists.");
+            throw ProjectAlreadyExistsException::create($projectName);
         }
 
         File::ensureDirectoryExists("./{$projectName}");
