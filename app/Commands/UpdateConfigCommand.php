@@ -46,16 +46,16 @@ class UpdateConfigCommand extends Command
 
         $path = text(
             label: 'Relative root path',
-            placeholder: '$HOME/projects',
-            default: config('app.filament.path'),
-            hint: 'The path to the root of your projects',
+            placeholder: 'example: $HOME/projects',
+            default: Config::get('path'),
+            hint: '(Optional) The path to the root of your projects',
         );
 
         $vendorName = text(
             label: 'Vendor name',
             placeholder: 'acme',
-            default: config('app.filament.vendor_name'),
-            hint: 'The vendor name of your projects',
+            default: Config::get('vendorName'),
+            hint: '(Optional) The vendor name of your projects',
         );
 
         clear();
