@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions\Initialize;
 
 use App\DataTransferObjects\Package;
+use App\Facades\Config;
 
 use function Laravel\Prompts\form;
 
@@ -29,6 +30,8 @@ class HandlePackageInformation
             )
             ->text(
                 label: 'Vendor name',
+                placeholder: Config::get('vendorName'),
+                default: Config::get('vendorName'),
                 required: true,
                 name: 'vendor',
                 validate: $this->validateSlug('vendor name'),
