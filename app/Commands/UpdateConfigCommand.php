@@ -27,7 +27,7 @@ class UpdateConfigCommand extends Command
         table(
             headers: ['Project Path', 'Vendor Name'],
             rows: [
-                [Config::get('path'), Config::get('vendorName')],
+                [Config::get('path', ''), Config::get('vendorName', '')],
             ],
         );
 
@@ -39,7 +39,7 @@ class UpdateConfigCommand extends Command
         if (! $confirmUpdate) {
             error('Aborted.');
 
-            return Command::SUCCESS;
+            return Command::FAILURE;
         }
 
         clear();
@@ -47,14 +47,14 @@ class UpdateConfigCommand extends Command
         $path = text(
             label: 'Relative root path',
             placeholder: 'example: $HOME/projects',
-            default: Config::get('path'),
+            default: Config::get('path', null),
             hint: '(Optional) The path to the root of your projects',
         );
 
         $vendorName = text(
             label: 'Vendor name',
             placeholder: 'acme',
-            default: Config::get('vendorName'),
+            default: Config::get('vendorName', null),
             hint: '(Optional) The vendor name of your projects',
         );
 
@@ -76,7 +76,7 @@ class UpdateConfigCommand extends Command
         if (! $confirmUpdate) {
             error('Aborted.');
 
-            return Command::SUCCESS;
+            return Command::FAILURE;
         }
 
         Config::set('path', $path);
