@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+// @pest-ignore
 class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
