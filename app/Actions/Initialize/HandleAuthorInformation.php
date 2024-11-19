@@ -17,7 +17,13 @@ class HandleAuthorInformation
         $gitUsername = Str::squish(Process::run('git config user.name')->output());
         $gitEmail = Str::squish(Process::run('git config user.email')->output());
 
-        $data = form()
+        return Author::from($this->form($gitUsername, $gitEmail));
+    }
+
+    // @codeCoverageIgnoreStart
+    public function form(string $gitUsername, string $gitEmail): array
+    {
+        return form()
             ->intro('Package author information')
             ->text(
                 label: 'Author name',
@@ -34,7 +40,6 @@ class HandleAuthorInformation
                 name: 'email',
             )
             ->submit();
-
-        return Author::from($data);
     }
+    // @codeCoverageIgnoreEnd
 }
