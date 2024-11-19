@@ -10,7 +10,7 @@ use function Laravel\Prompts\form;
 
 class HandleCustomAssets
 {
-    public function __invoke(): Asset
+    public function __invoke(): ?Asset
     {
         $data = form()
             ->intro('Custom assets setup')
@@ -64,6 +64,8 @@ class HandleCustomAssets
             )
             ->submit();
 
-        return (! is_null($data['assets'])) ? Asset::from($data['assets']) : null;
+        return (! is_null($data['assets']))
+            ? Asset::from($data['assets'])
+            : null;
     }
 }
