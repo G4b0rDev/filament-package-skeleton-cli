@@ -3,6 +3,8 @@
 use App\Actions\Initialize\HandleAuthorInformation;
 use App\DataTransferObjects\Author;
 use Illuminate\Support\Facades\Process;
+use Laravel\Prompts\Key;
+use Laravel\Prompts\Prompt;
 
 it('should test the author information form', function () {
     Process::fake([
@@ -10,15 +12,12 @@ it('should test the author information form', function () {
         'git config user.email' => Process::result(['output' => 'test@example.com']),
     ]);
 
-    $mock = Mockery::mock(HandleAuthorInformation::class)->makePartial()->shouldAllowMockingProtectedMethods();
-    $mock->shouldReceive('form')
-        ->with('Test User', 'test@example.com')
-        ->andReturn([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+    Prompt::fake([
+        Key::ENTER,
+        Key::ENTER,
+    ]);
 
-    app()->instance(HandleAuthorInformation::class, $mock);
+    app(HandleAuthorInformation::class);
 
     $author = app(HandleAuthorInformation::class)();
 
