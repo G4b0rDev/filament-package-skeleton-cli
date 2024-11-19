@@ -26,7 +26,7 @@ class HandlePackageInformation
                 default: $name ?? '',
                 required: true,
                 name: 'package',
-                validate: $this->validateSlug('package name'),
+                validate: fn ($value) => $this->validateSlugValue('package name', $value),
             )
             ->text(
                 label: 'Vendor name',
@@ -34,7 +34,7 @@ class HandlePackageInformation
                 default: Config::get('vendorName'),
                 required: true,
                 name: 'vendor',
-                validate: $this->validateSlug('vendor name'),
+                validate: fn ($value) => $this->validateSlugValue('vendor name', $value),
             )
             ->confirm(
                 label: 'Do you want to create a standalone filament package?',
@@ -62,18 +62,16 @@ class HandlePackageInformation
         return Package::from($data);
     }
 
-    protected function validateSlug(string $attribute): callable
+    public function validateSlugValue(string $attribute, string $value): ?string
     {
-        return function (string $value) use ($attribute) {
-            if (empty($value)) {
-                return "The {$attribute} is required.";
-            }
+        if (empty($value)) {
+            return "The {$attribute} is required.";
+        }
 
-            if (! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $value)) {
-                return "The {$attribute} format is invalid.";
-            }
+        if (! preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $value)) {
+            return "The {$attribute} format is invalid.";
+        }
 
-            return null;
-        };
+        return null;
     }
 }
