@@ -53,13 +53,7 @@ class HandlePackageInformation
                     )
                     ->submit(),
             )
-            ->confirm(
-                label: 'Do you want have custom assets?',
-                default: true,
-                name: 'custom_assets',
-            )
-            ->addIf(
-                condition: fn ($answers) => $answers['custom_assets'] === true,
+            ->add(
                 name: 'assets',
                 step: fn () => ($this->customAssetsForm)(),
             )
