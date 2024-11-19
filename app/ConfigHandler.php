@@ -15,7 +15,7 @@ class ConfigHandler
 
     public function __construct()
     {
-        $this->configPath = getenv('HOME').'/.config/filament-package-skeleton/config.json';
+        $this->configPath = getenv('HOME') . '/.config/filament-package-skeleton/config.json';
 
         if (! file_exists(dirname($this->configPath))) {
             mkdir(dirname($this->configPath), 0755, true);

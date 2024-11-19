@@ -22,7 +22,7 @@ class PublishProjectAction
         }
 
         if (empty($basePath)) {
-            $path = getcwd().'/'.$projectName;
+            $path = getcwd() . '/' . $projectName;
         }
 
         File::ensureDirectoryExists($path);
