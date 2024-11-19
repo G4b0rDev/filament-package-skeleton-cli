@@ -9,29 +9,34 @@
         "skeleton",
         "filament package development"
     ],
-    "homepage": "https://laravel-zero.com",
     "type": "project",
     "license": "MIT",
-    "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
-    },
     "authors": [
         {
-            "name": "Gabor",
-            "email": "enunomaduro@gmail.com"
+            "name": "Gabor"
+        }
+    ],
+    "scripts": {
+        "fix": "vendor/bin/duster fix",
+        "test": "vendor/bin/pest"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/G4b0rDev/laravel-stub"
         }
     ],
     "require": {
         "php": "^8.2.0",
-        "binafy/laravel-stub": "^1.0",
-        "laravel-zero/framework": "^11.0.2",
-        "laravel/prompts": "^0.3.1"
+        "binafy/laravel-stub": "@dev",
+        "illuminate/support": "^11.32",
+        "laravel-zero/framework": "^11.0.2"
     },
     "require-dev": {
         "laravel/pint": "^1.18.1",
-        "mockery/mockery": "^1.6.12",
-        "pestphp/pest": "^3.5.1"
+        "mockery/mockery": "^1.6",
+        "pestphp/pest-plugin-faker": "^3.0",
+        "tightenco/duster": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,11 +50,19 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Providers\\AppServiceProvider"
+            ]
+        }
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
+            "pestphp/pest-plugin-faker": true,
             "pestphp/pest-plugin": true
         }
     },
