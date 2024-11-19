@@ -14,7 +14,7 @@ class PublishProjectAction
 {
     public function __invoke(string $projectName): void
     {
-        $basePath = Str::replace('$HOME', env('HOME'), Config::get('path'));
+        $basePath = Str::replace('$HOME', getenv('HOME'), Config::get('path'));
         $path = "{$basePath}/{$projectName}";
 
         if (File::exists($path)) {
@@ -22,7 +22,7 @@ class PublishProjectAction
         }
 
         if (empty($basePath)) {
-            $path = getcwd() . '/' . $projectName;
+            $path = getcwd().'/'.$projectName;
         }
 
         File::ensureDirectoryExists($path);
