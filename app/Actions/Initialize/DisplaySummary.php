@@ -13,6 +13,7 @@ use function Laravel\Prompts\table;
 
 class DisplaySummary
 {
+    // @codeCoverageIgnoreStart
     public function __invoke(Author $author, Package $package): void
     {
         intro('Summary author');
@@ -40,4 +41,5 @@ class DisplaySummary
             callback: fn () => sleep(1),
         );
     }
+    // @codeCoverageIgnoreEnd
 }
