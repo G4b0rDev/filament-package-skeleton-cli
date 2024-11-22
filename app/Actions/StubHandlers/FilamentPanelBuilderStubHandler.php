@@ -20,7 +20,7 @@ class FilamentPanelBuilderStubHandler extends BaseStubHandler
         }
 
         LaravelStub::from($stub)
-            ->to("$this->basePath/src")
+            ->to("{$this->basePath}/src")
             ->name("{$this->package->filamentPlugin->pluginName}Plugin")
             ->ext('php')
             ->replaces([
