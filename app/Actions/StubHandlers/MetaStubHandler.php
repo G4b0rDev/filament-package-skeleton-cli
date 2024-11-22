@@ -26,8 +26,6 @@ class MetaStubHandler extends BaseStubHandler
             ->name('README')
             ->ext('md')
             ->generate();
-
-        $this->cleanUp($stub);
     }
 
     protected function publishChangelog(): void
@@ -40,8 +38,6 @@ class MetaStubHandler extends BaseStubHandler
             ->ext('md')
             ->replace('PACKAGE_NAME', $this->package->name)
             ->generate();
-
-        $this->cleanUp($stub);
     }
 
     protected function publishLicense(): void
@@ -78,7 +74,5 @@ class MetaStubHandler extends BaseStubHandler
                 'NAMESPACE' => Str::studly($this->package->name),
             ])
             ->generate();
-
-        $this->cleanUp($stub);
     }
 }
