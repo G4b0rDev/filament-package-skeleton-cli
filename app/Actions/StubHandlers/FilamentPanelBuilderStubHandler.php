@@ -15,11 +15,13 @@ class FilamentPanelBuilderStubHandler extends BaseStubHandler
 
         if (! $this->package->filamentPlugin->isStandalone) {
             $this->cleanUp($stub);
+
+            return;
         }
 
         LaravelStub::from($stub)
-            ->to($this->basePath)
-            ->name("{$this->package->name}Plugin")
+            ->to("$this->basePath/src")
+            ->name("{$this->package->filamentPlugin->pluginName}Plugin")
             ->ext('php')
             ->replaces([
                 'NAMESPACE' => Str::studly($this->package->name),
