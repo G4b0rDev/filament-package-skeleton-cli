@@ -49,12 +49,10 @@ class MetaStubHandler extends BaseStubHandler
             ->name('LICENSE')
             ->ext('md')
             ->replaces([
-                'VENDOR_NAME' => $this->package->vendor,
+                'VENDOR_NAME' => $this->author->name,
                 'AUTHOR_EMAIL' => $this->author->email,
             ])
             ->generate();
-
-        $this->cleanUp($stub);
     }
 
     protected function publishComposer(): void
