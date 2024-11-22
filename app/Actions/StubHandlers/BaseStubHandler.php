@@ -18,7 +18,7 @@ abstract class BaseStubHandler
 
     public function __construct(Package $package, Author $author)
     {
-        $this->basePath = getcwd() . '/' . $package->name;
+        $this->basePath = getcwd().'/'.$package->name;
         $this->package = $package;
         $this->author = $author;
     }
@@ -32,6 +32,8 @@ abstract class BaseStubHandler
 
     public function cleanup(string $path): void
     {
-        File::delete($path);
+        (File::isFile($path))
+            ? File::delete($path)
+            : File::deleteDirectory($path);
     }
 }
