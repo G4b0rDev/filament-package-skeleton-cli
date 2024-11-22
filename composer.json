@@ -29,7 +29,6 @@
     "require": {
         "php": "^8.2.0",
         "binafy/laravel-stub": "@dev",
-        "illuminate/support": "^11.32",
         "laravel-zero/framework": "^11.0.2"
     },
     "require-dev": {
