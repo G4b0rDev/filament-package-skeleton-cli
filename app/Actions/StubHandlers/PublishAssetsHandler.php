@@ -37,8 +37,6 @@ class PublishAssetsHandler extends BaseStubHandler
             ->name('tailwindcss.config')
             ->ext('js')
             ->generate();
-
-        $this->cleanUp($stub);
     }
 
     protected function publishCss(): void
