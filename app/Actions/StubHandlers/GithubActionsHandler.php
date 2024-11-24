@@ -19,7 +19,7 @@ class GithubActionsHandler extends BaseStubHandler
         $fundingStub = "{$this->basePath}/.github/FUNDING.yml.stub";
 
         LaravelStub::from($fundingStub)
-            ->to($this->basePath)
+            ->to("{$this->basePath}/.github")
             ->name('FUNDING')
             ->ext('yml')
             ->replace('VENDOR_NAME', $this->package->vendor)
@@ -33,7 +33,7 @@ class GithubActionsHandler extends BaseStubHandler
         $issueTemplateStub = "{$this->basePath}/.github/ISSUE_TEMPLATE/config.yml.stub";
 
         LaravelStub::from($issueTemplateStub)
-            ->to($this->basePath)
+            ->to("{$this->basePath}/.github/ISSUE_TEMPLATE")
             ->name('FUNDING')
             ->ext('yml')
             ->replaces([
