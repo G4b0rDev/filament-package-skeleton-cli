@@ -14,15 +14,14 @@ class PublishProjectAction
 {
     public function __invoke(string $projectName): void
     {
-        $basePath = Str::replace('$HOME', getenv('HOME'), Config::get('path'));
+        $basePath = Config::get('path')
+            ? Str::replace('$HOME', getenv('HOME'), Config::get('path'))
+            : getcwd();
+
         $path = "{$basePath}/{$projectName}";
 
         if (File::exists($path)) {
             throw ProjectAlreadyExistsException::create($path);
-        }
-
-        if (empty($basePath)) {
-            $path = getcwd() . '/' . $projectName;
         }
 
         File::ensureDirectoryExists($path);
