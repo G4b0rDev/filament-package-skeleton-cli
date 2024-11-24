@@ -24,19 +24,11 @@ class PublishAssetsHandler extends BaseStubHandler
 
     protected function publishTailwind(): void
     {
-        $stub = "{$this->basePath}/tailwindcss.config.js";
-
-        if (! $this->package->asset->withCss) {
-            $this->cleanUp($stub);
-
+        if ($this->package->asset->withCss) {
             return;
         }
 
-        LaravelStub::from($stub)
-            ->to($this->basePath)
-            ->name('tailwindcss.config')
-            ->ext('js')
-            ->generate();
+        $this->cleanUp("{$this->basePath}/tailwindcss.config.js");
     }
 
     protected function publishCss(): void
@@ -86,6 +78,8 @@ class PublishAssetsHandler extends BaseStubHandler
 
     protected function publishViteConfig(): void
     {
+        $stubPath = "{$this->basePath}/vite.config.js.stub";
+
         $cssFileName = ($this->package->asset->cssName)
             ? $this->package->asset->cssName
             : $this->package->name;
@@ -94,7 +88,7 @@ class PublishAssetsHandler extends BaseStubHandler
             ? $this->package->asset->jsName
             : $this->package->name;
 
-        LaravelStub::from("{$this->basePath}/vite.config.js.stub")
+        LaravelStub::from($stubPath)
             ->to($this->basePath)
             ->name('vite.config')
             ->ext('js')
@@ -104,5 +98,7 @@ class PublishAssetsHandler extends BaseStubHandler
             ])
             ->conditions(['hasJavascript' => true])
             ->generate();
+
+        $this->cleanUp($stubPath);
     }
 }
