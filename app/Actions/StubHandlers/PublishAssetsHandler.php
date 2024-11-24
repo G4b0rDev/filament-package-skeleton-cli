@@ -33,7 +33,7 @@ class PublishAssetsHandler extends BaseStubHandler
 
     protected function publishCss(): void
     {
-        if (is_null($this->package->asset->cssName)) {
+        if (! $this->package->asset->withCss) {
             $this->cleanUp("{$this->basePath}/resources/css");
 
             return;
