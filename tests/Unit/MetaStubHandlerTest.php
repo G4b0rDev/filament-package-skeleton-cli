@@ -17,7 +17,7 @@ beforeEach(function () {
     File::spy();
     LaravelStub::spy();
 
-    $this->basePath = getcwd().'/TestPackage';
+    $this->basePath = getcwd() . '/TestPackage';
 
     $this->author = Author::from([
         'name' => 'Test Author',

@@ -18,7 +18,7 @@ beforeEach(function () {
     File::spy();
     LaravelStub::spy();
 
-    $this->basePath = getcwd().'/TestPackage';
+    $this->basePath = getcwd() . '/TestPackage';
 
     $this->author = Author::from([
         'name' => 'Test Author',
@@ -372,7 +372,7 @@ it('should publish the views', function (Package $package) {
 
 it('should should publish vite config', function () {
     $vitePath = "{$this->basePath}/vite.config.js";
-    $viteStubPath = __DIR__.'/../../stubs/vite.config.js';
+    $viteStubPath = __DIR__ . '/../../stubs/vite.config.js';
 
     File::shouldReceive('exists')
         ->with($vitePath)

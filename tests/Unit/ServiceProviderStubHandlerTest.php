@@ -14,7 +14,7 @@ beforeEach(function () {
     app()->register(LaravelStubServiceProvider::class);
     app()->register(FilesystemServiceProvider::class);
 
-    $this->basePath = getcwd().'/TestPackage';
+    $this->basePath = getcwd() . '/TestPackage';
 
     $this->author = Author::from([
         'name' => 'Test Author',
