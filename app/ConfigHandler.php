@@ -13,9 +13,9 @@ class ConfigHandler
 
     protected Config $config;
 
-    public function __construct()
+    public function __construct(string $configPath)
     {
-        $this->configPath = getenv('HOME') . '/.config/filament-package-skeleton/config.json';
+        $this->configPath = $configPath;
 
         if (! file_exists(dirname($this->configPath))) {
             mkdir(dirname($this->configPath), 0755, true);
@@ -25,7 +25,7 @@ class ConfigHandler
         $this->config = Config::from(json_decode(file_get_contents($this->configPath), true) ?? []);
     }
 
-    public function get(string $key, ?string $default = null): string
+    public function get(string $key, ?string $default = null): ?string
     {
         if (! property_exists($this->config, $key)) {
             throw new InvalidArgumentException("Property {$key} does not exist in Config.");
