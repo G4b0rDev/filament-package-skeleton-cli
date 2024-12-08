@@ -4,3 +4,5 @@
 /.vagrant
 .phpunit.result.cache
 composer.lock
+/tests/Package/*
+!/tests/Package/.gitkeep
