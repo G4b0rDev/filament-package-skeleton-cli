@@ -5,7 +5,7 @@ use App\Facades\Config;
 use Illuminate\Support\Facades\Process;
 
 beforeEach(function () {
-    $path = __DIR__.'/../Package';
+    $path = __DIR__ . '/../Package';
     Config::set('path', $path);
     chdir($path);
 });
@@ -42,7 +42,7 @@ it('should initialize a new package project', function () {
     Process::partialMock()->shouldReceive('concurrently')
         ->andReturn(0);
 
-    $path = __DIR__.'/../Package';
+    $path = __DIR__ . '/../Package';
     Config::set('path', null);
     chdir($path);
 
