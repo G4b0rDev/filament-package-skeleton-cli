@@ -7,7 +7,10 @@ beforeEach(function () {
 });
 
 it('should create a config file if it does not exist', function () {
-    expect(file_exists(__DIR__.'/../Package/filament-package-skeleton/config.json'))->toBeTrue();
+    $configPath = __DIR__.'/../Package/filament-package-skeleton/config.json';
+
+    expect(is_dir(dirname($configPath)))->toBeTrue();
+    expect(file_exists($configPath))->toBeTrue();
 });
 
 it('can get a config value', function () {
