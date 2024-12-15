@@ -1,9 +1,14 @@
 <?php
 
 use App\ConfigHandler;
+use Illuminate\Support\Facades\File;
 
 beforeEach(function () {
     $this->config = app(ConfigHandler::class, ['configPath' => __DIR__.'/../Package/filament-package-skeleton/config.json']);
+});
+
+afterAll(function () {
+    File::deleteDirectory(__DIR__.'/../Package/filament-package-skeleton');
 });
 
 it('should create a config file if it does not exist', function () {
