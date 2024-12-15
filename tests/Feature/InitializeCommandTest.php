@@ -2,12 +2,18 @@
 
 use App\Exceptions\ProjectAlreadyExistsException;
 use App\Facades\Config;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 
 beforeEach(function () {
     $path = __DIR__ . '/../Package';
     Config::set('path', $path);
     chdir($path);
+});
+
+afterAll(function () {
+    File::deleteDirectory(__DIR__.'/../Package/test-package');
+    File::deleteDirectory(__DIR__.'/../Package/test-package2');
 });
 
 it('should initialize a new package project without assets', function () {
@@ -54,9 +60,9 @@ it('should initialize a new package project', function () {
         ->expectsConfirmation('Do you want to create a standalone filament package?', 'no')
         ->expectsConfirmation('Do you want have custom assets?', 'yes')
         ->expectsConfirmation('Do you need css with TailwindCSS setup?', 'yes')
-        ->expectsQuestion('Do you add a custom css file name?', ' ')
+        ->expectsQuestion('Do you add a custom css file name?', 'app')
         ->expectsConfirmation('Do you need js with AlpineJS setup?', 'yes')
-        ->expectsQuestion('Do you add a custom js file name?', ' ')
+        ->expectsQuestion('Do you add a custom js file name?', 'app')
         ->expectsConfirmation('Do you need blade templates/views?', 'yes')
         ->assertExitCode(0);
 });
