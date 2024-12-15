@@ -11,7 +11,7 @@ namespace App\DataTransferObjects;
  * @property string|null $jsName
  * @property bool $withViews
  *
- * @method static Asset from(array $data, bool $withAssets): self
+ * @method static Asset from(array $data): self
  */
 readonly class Asset
 {
