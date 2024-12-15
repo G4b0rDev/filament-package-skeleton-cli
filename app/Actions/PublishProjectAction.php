@@ -14,7 +14,7 @@ class PublishProjectAction
 {
     public function __invoke(string $projectName): void
     {
-        $basePath = Config::get('path')
+        $basePath = ! empty(Config::get('path', ''))
             ? Str::replace('$HOME', getenv('HOME'), Config::get('path'))
             : getcwd();
 
