@@ -18,17 +18,11 @@
     ],
     "scripts": {
         "fix": "vendor/bin/duster fix",
-        "test": "vendor/bin/pest"
+        "test": "vendor/bin/pest --coverage"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/G4b0rDev/laravel-stub"
-        }
-    ],
     "require": {
         "php": "^8.2.0",
-        "binafy/laravel-stub": "@dev",
+        "binafy/laravel-stub": "^1.0",
         "laravel-zero/framework": "^11.0.2"
     },
     "require-dev": {
