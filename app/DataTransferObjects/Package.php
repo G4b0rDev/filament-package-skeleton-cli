@@ -33,7 +33,7 @@ readonly class Package
             vendor: Str::slug($data['vendor']),
             filamentPlugin: FilamentPlugin::from($data),
             asset: $data['assets'] ?? null,
-            withAssets: $data['custom_assets'] ?? false,
+            withAssets: ! is_null($data['assets']),
         );
     }
 }
