@@ -29,8 +29,8 @@ class ServiceProviderStubHandler extends BaseStubHandler
             ])
             ->conditions([
                 'hasAssets' => $this->package->withAssets,
-                'hasCss' => $this->package->asset->withCss,
-                'hasJs' => $this->package->asset->withJs,
+                'hasCss' => $this->package->asset->withCss ?? false,
+                'hasJs' => $this->package->asset->withJs ?? false,
             ])
             ->generate();
 
