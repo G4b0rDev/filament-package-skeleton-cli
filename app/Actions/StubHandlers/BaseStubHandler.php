@@ -10,24 +10,19 @@ use Illuminate\Support\Facades\File;
 
 abstract class BaseStubHandler
 {
-    protected string $basePath;
-
-    protected Package $package;
-
-    protected Author $author;
-
-    public function __construct(Package $package, Author $author)
-    {
-        $this->basePath = getcwd() . '/' . $package->name;
-        $this->package = $package;
-        $this->author = $author;
+    public function __construct(
+        protected Package $package,
+        protected Author $author,
+        protected ?string $basePath = null
+    ) {
+        //
     }
 
     abstract public function __invoke(): void;
 
-    public static function make(Package $package, Author $author): static
+    public static function make(Package $package, Author $author, string $basePath): static
     {
-        return new static($package, $author);
+        return new static($package, $author, $basePath);
     }
 
     public function cleanup(string $path): void
