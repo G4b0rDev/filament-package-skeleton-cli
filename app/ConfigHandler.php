@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\DataTransferObjects\Config;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class ConfigHandler
@@ -45,6 +46,13 @@ class ConfigHandler
         }
 
         $this->config->{$key} = $value;
+    }
+
+    public function basePath(): string
+    {
+        return ! empty($this->get('path'))
+            ? Str::replace('$HOME', getenv('HOME'), $this->get('path'))
+            : getcwd();
     }
 
     public function save(): void

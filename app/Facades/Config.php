@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string get(string $key, ?string $default = null)
  * @method static void set(string $key, ?string $value = null)
  * @method static void save()
+ * @method static string basePath()
  *
  * @see \App\ConfigHandler
  */
