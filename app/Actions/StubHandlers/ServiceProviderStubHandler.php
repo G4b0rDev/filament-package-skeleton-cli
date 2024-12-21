@@ -17,7 +17,7 @@ class ServiceProviderStubHandler extends BaseStubHandler
 
         LaravelStub::from($stub)
             ->to("{$this->basePath}/src")
-            ->name("{$this->package->name}ServiceProvider")
+            ->name("{$packageName}ServiceProvider")
             ->ext('php')
             ->replaces([
                 'NAMESPACE' => $packageName,
