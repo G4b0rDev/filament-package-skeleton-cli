@@ -114,8 +114,8 @@ class InitializeCommand extends Command
             )
             ->text(
                 label: 'Vendor name',
-                placeholder: Config::get('vendorName'),
-                default: Config::get('vendorName'),
+                placeholder: Config::get('vendorName', ''),
+                default: Config::get('vendorName', ''),
                 required: true,
                 name: 'vendor',
                 validate: fn ($value) => $this->validateSlugValue('vendor name', $value),
