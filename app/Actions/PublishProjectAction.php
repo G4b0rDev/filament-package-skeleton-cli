@@ -8,16 +8,12 @@ use App\Exceptions\ProjectAlreadyExistsException;
 use App\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
-use Illuminate\Support\Str;
 
 class PublishProjectAction
 {
     public function __invoke(string $projectName): void
     {
-        $basePath = ! empty(Config::get('path', ''))
-            ? Str::replace('$HOME', getenv('HOME'), Config::get('path'))
-            : getcwd();
-
+        $basePath = Config::basePath();
         $path = "{$basePath}/{$projectName}";
 
         if (File::exists($path)) {
