@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(ConfigHandler::class, function () {
-            return new ConfigHandler(configPath: getenv('HOME').'/.config/filament-package-skeleton/config.json');
+            return new ConfigHandler(configPath: getenv('HOME') . '/.config/filament-package-skeleton/config.json');
         });
     }
 

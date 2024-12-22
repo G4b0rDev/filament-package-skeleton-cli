@@ -9,11 +9,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 
 afterAll(function () {
-    Arr::map(File::directories(__DIR__.'/../Package'), fn (string $directory) => File::deleteDirectory($directory));
+    Arr::map(File::directories(__DIR__ . '/../Package'), fn (string $directory) => File::deleteDirectory($directory));
 });
 
 it('should generate the package service provider', function (array $package, array $author) {
-    Config::set('path', __DIR__.'/../Package');
+    Config::set('path', __DIR__ . '/../Package');
 
     $package = Package::from($package);
     $author = Author::from($author);
@@ -21,5 +21,5 @@ it('should generate the package service provider', function (array $package, arr
     app(PublishProjectAction::class)($package->name);
     app(PublishStubs::class)($package, $author);
 
-    expect(file_exists(__DIR__.'/../Package/my-simple-plugin/src/MySimplePluginServiceProvider.php'))->toBeTrue();
+    expect(file_exists(__DIR__ . '/../Package/my-simple-plugin/src/MySimplePluginServiceProvider.php'))->toBeTrue();
 })->with('defaultPackage');

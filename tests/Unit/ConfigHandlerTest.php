@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\File;
 beforeEach(function () {
     App::instance(
         ConfigHandler::class,
-        new ConfigHandler(configPath: __DIR__.'/../Package/filament-package-skeleton/config.json')
+        new ConfigHandler(configPath: __DIR__ . '/../Package/filament-package-skeleton/config.json')
     );
 });
 
 afterAll(function () {
-    File::deleteDirectory(__DIR__.'/../Package/filament-package-skeleton');
+    File::deleteDirectory(__DIR__ . '/../Package/filament-package-skeleton');
 });
 
 it('should create a config file if it does not exist', function () {
-    $configPath = __DIR__.'/../Package/filament-package-skeleton/config.json';
+    $configPath = __DIR__ . '/../Package/filament-package-skeleton/config.json';
 
     expect(is_dir(dirname($configPath)))->toBeTrue();
     expect(file_exists($configPath))->toBeTrue();

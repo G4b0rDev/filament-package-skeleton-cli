@@ -17,7 +17,7 @@ class PublishStubs
 {
     public function __invoke(Package $package, Author $author): void
     {
-        $basePath = Config::basePath().'/'.Str::slug($package->name);
+        $basePath = Config::basePath() . '/' . Str::slug($package->name);
 
         MetaStubHandler::make($package, $author, $basePath)();
         ServiceProviderStubHandler::make($package, $author, $basePath)();
