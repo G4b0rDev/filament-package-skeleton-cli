@@ -34,7 +34,7 @@ class GithubActionsHandler extends BaseStubHandler
 
         LaravelStub::from($issueTemplateStub)
             ->to("{$this->basePath}/.github/ISSUE_TEMPLATE")
-            ->name('FUNDING')
+            ->name('config')
             ->ext('yml')
             ->replaces([
                 'VENDOR_NAME' => $this->package->vendor,
