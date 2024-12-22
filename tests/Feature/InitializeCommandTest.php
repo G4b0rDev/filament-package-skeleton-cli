@@ -1,5 +1,9 @@
 <?php
 
+use App\Actions\HandleDependencyInstall;
+use App\Actions\PublishProjectAction;
+use App\Actions\PublishStubs;
+use App\Commands\InitializeCommand;
 use App\ConfigHandler;
 use App\DataTransferObjects\Asset;
 use App\DataTransferObjects\Author;
@@ -14,14 +18,14 @@ use Illuminate\Support\Facades\Process;
 beforeEach(function () {
     App::instance(
         ConfigHandler::class,
-        new ConfigHandler(configPath: __DIR__ . '/../Package/filament-package-skeleton/config.json')
+        new ConfigHandler(configPath: __DIR__.'/../Package/filament-package-skeleton/config.json')
     );
 
-    Config::set('path', __DIR__ . '/../Package');
+    Config::set('path', __DIR__.'/../Package');
 });
 
 afterAll(function () {
-    Arr::map(File::directories(__DIR__ . '/../Package'), fn (string $directory) => File::deleteDirectory($directory));
+    Arr::map(File::directories(__DIR__.'/../Package'), fn (string $directory) => File::deleteDirectory($directory));
 });
 
 it('should initialize a new package project without assets', function (array $package, array $author) {
@@ -71,7 +75,7 @@ it('should initialize a new package project', function (array $package, array $a
     $this->artisan('new')
         ->expectsQuestion('Author name', $author->name)
         ->expectsQuestion('Author email', $author->email)
-        ->expectsQuestion('Package name', $package->name . '2')
+        ->expectsQuestion('Package name', $package->name.'2')
         ->expectsQuestion('Vendor name', $package->vendor)
         ->expectsConfirmation('Do you want to create a standalone filament package?', $package->filamentPlugin->isStandalone)
         ->expectsConfirmation('Do you want have custom assets?', 'yes')
@@ -82,3 +86,17 @@ it('should initialize a new package project', function (array $package, array $a
         ->expectsConfirmation('Do you need blade templates/views?', 'yes')
         ->assertExitCode(0);
 })->with('packageWithAsset');
+
+it('should validate slug value correctly', function () {
+    $command = new InitializeCommand(
+        new PublishProjectAction,
+        new PublishStubs,
+        new HandleDependencyInstall
+    );
+
+    expect($command->validateSlugValue('package name', 'valid-slug'))->toBeNull();
+    expect($command->validateSlugValue('package name', 'Invalid Slug'))->toBe('The package name format is invalid.');
+    expect($command->validateSlugValue('package name', 'invalid_slug'))->toBe('The package name format is invalid.');
+    expect($command->validateSlugValue('package name', 'invalid-slug-'))->toBe('The package name format is invalid.');
+    expect($command->validateSlugValue('package name', 'invalid--slug'))->toBe('The package name format is invalid.');
+});
