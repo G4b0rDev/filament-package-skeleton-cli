@@ -6,3 +6,4 @@
 composer.lock
 /tests/Package/*
 !/tests/Package/.gitkeep
+builds/*
