@@ -1,14 +1,19 @@
 <?php
 
+use App\ConfigHandler;
 use App\Exceptions\ProjectAlreadyExistsException;
 use App\Facades\Config;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
 
 beforeEach(function () {
-    $path = __DIR__ . '/../Package';
-    Config::set('path', $path);
-    chdir($path);
+    App::instance(
+        ConfigHandler::class,
+        new ConfigHandler(configPath: __DIR__.'/../Package/filament-package-skeleton/config.json')
+    );
+
+    Config::set('path', __DIR__.'/../Package');
 });
 
 afterAll(function () {
@@ -47,10 +52,6 @@ it('should throw an expection if project directory already exists', function () 
 it('should initialize a new package project', function () {
     Process::partialMock()->shouldReceive('concurrently')
         ->andReturn(0);
-
-    $path = __DIR__ . '/../Package';
-    Config::set('path', null);
-    chdir($path);
 
     $this->artisan('new')
         ->expectsQuestion('Author name', 'Test User')
