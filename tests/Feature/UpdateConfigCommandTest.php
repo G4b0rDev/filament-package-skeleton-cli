@@ -8,7 +8,7 @@ use LaravelZero\Framework\Commands\Command;
 beforeEach(function () {
     App::instance(
         ConfigHandler::class,
-        new ConfigHandler(configPath: __DIR__.'/../Package/filament-package-skeleton/config.json')
+        new ConfigHandler(configPath: __DIR__ . '/../Package/filament-package-skeleton/config.json')
     );
 });
 
