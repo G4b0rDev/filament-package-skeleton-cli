@@ -6,11 +6,11 @@ use App\DataTransferObjects\Asset;
 use App\DataTransferObjects\Author;
 use App\DataTransferObjects\Package;
 
-function generatePackage(array $package, array $author, array $asset = []): void
+function generatePackage(array $package, array $author, ?array $asset = null): void
 {
-    if (! empty($asset)) {
-        $package['assets'] = Asset::from($asset);
-    }
+    $package['assets'] = (! is_null($asset) && ! empty($asset))
+        ? Asset::from($asset)
+        : null;
 
     $package = Package::from($package);
     $author = Author::from($author);
