@@ -22,10 +22,10 @@
     },
     "require": {
         "php": "^8.2.0",
-        "binafy/laravel-stub": "^1.0",
-        "laravel-zero/framework": "^11.0.2"
+        "binafy/laravel-stub": "^1.0"
     },
     "require-dev": {
+        "laravel-zero/framework": "^11.0.2",
         "laravel/pint": "^1.18.1",
         "mockery/mockery": "^1.6",
         "pestphp/pest-plugin-faker": "^3.0",
