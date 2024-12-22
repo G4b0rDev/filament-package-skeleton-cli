@@ -47,14 +47,14 @@ class UpdateConfigCommand extends Command
         $path = text(
             label: 'Relative root path',
             placeholder: 'example: $HOME/projects',
-            default: Config::get('path'),
+            default: Config::get('path', ''),
             hint: '(Optional) The path to the root of your projects',
         );
 
         $vendorName = text(
             label: 'Vendor name',
             placeholder: 'acme',
-            default: Config::get('vendorName'),
+            default: Config::get('vendorName', ''),
             hint: '(Optional) The vendor name of your projects',
         );
 
