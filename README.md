@@ -20,11 +20,11 @@ or you can download the phar file from the [releases page](https://github.com/G4
 1. Download the file from the [releases page](https://github.com/G4b0rDev/filament-package-skeleton-cli/releases).
 2. Move the file to your bin directory:
     ```bash
-        sudo mv filament-package-skeleton-cli /usr/local/bin/filament-package-skeleton-cli
+    sudo mv filament-package-skeleton-cli /usr/local/bin/filament-package-skeleton-cli
     ```
 3. Make the file executable:
    ```bash
-       chmod +x /usr/local/bin/filament-package-skeleton-cli
+    chmod +x /usr/local/bin/filament-package-skeleton-cli
    ```
 
 ## Commands
