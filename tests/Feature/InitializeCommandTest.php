@@ -24,9 +24,11 @@ beforeEach(function () {
     Config::set('path', __DIR__ . '/../Package');
 });
 
+/*
 afterAll(function () {
     Arr::map(File::directories(__DIR__ . '/../Package'), fn (string $directory) => File::deleteDirectory($directory));
 });
+*/
 
 it('should initialize a new package project without assets', function (array $package, array $author) {
     Process::partialMock()->shouldReceive('concurrently')
