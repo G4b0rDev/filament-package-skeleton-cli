@@ -29,7 +29,8 @@
         "laravel/pint": "^1.18.1",
         "mockery/mockery": "^1.6",
         "pestphp/pest-plugin-faker": "^3.0",
-        "tightenco/duster": "^3.0"
+        "tightenco/duster": "^3.0",
+        "illuminate/log": "^11.5"
     },
     "autoload": {
         "psr-4": {

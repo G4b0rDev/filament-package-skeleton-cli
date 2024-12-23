@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Exceptions\ProjectAlreadyExistsException;
 use App\Facades\Config;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Process;
 
 class PublishProjectAction
@@ -23,6 +24,7 @@ class PublishProjectAction
         File::ensureDirectoryExists($path);
 
         Process::run("git clone --depth 1 git@github.com:G4b0rDev/filament-package-skeleton.git {$path}");
+        Log::debug('Cloned filament-package-skeleton');
 
         Process::path($path)->run("rm -rf {$path}/.git");
 
