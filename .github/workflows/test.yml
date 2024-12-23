@@ -19,6 +19,13 @@ jobs:
       with:
         php-version: ${{ matrix.php-version }}
 
+    - name: Set up git credentials
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global credential.helper store
+        echo "https://${{ secrets.TOKEN }}:x-oauth-basic@github.com" > ~/.git-credentials
+
     - name: Install dependencies
       run: composer install
 
