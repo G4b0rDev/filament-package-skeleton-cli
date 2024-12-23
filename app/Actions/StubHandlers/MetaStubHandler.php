@@ -21,10 +21,6 @@ class MetaStubHandler extends BaseStubHandler
     {
         $stub = "{$this->basePath}/README.md";
 
-        if (! file_exists($stub)) {
-            return;
-        }
-
         LaravelStub::from($stub)
             ->to($this->basePath)
             ->name('README')
