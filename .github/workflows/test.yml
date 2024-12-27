@@ -29,6 +29,9 @@ jobs:
     - name: Install dependencies
       run: composer install
 
+    - name: Debug directory structure
+      run: ls -la tests/Package
+
     - name: Run tests
       run: |
         LOG_CHANNEL=stderr ./vendor/bin/pest

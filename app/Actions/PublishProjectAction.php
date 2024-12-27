@@ -23,6 +23,7 @@ class PublishProjectAction
 
         File::ensureDirectoryExists($path);
 
+        Log::debug("Cloning repository to {$path}");
         Process::run("git clone --depth 1 git@github.com:G4b0rDev/filament-package-skeleton.git {$path}");
         Log::debug('Cloned filament-package-skeleton');
 
