@@ -27,6 +27,12 @@ class PublishProjectAction
         Process::run("git clone --depth 1 git@github.com:G4b0rDev/filament-package-skeleton.git {$path}");
         Log::debug('Cloned filament-package-skeleton');
 
+        // Check the contents of the cloned directory
+        $contents = File::allFiles($path);
+        foreach ($contents as $file) {
+            Log::debug("Cloned file: {$file->getPathname()}");
+        }
+
         Process::path($path)->run("rm -rf {$path}/.git");
 
         Process::path($path)->run("cd {$path} && git init && git branch -M main");
