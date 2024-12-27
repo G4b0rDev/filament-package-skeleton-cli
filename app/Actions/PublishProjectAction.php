@@ -9,6 +9,7 @@ use App\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Process;
+use RuntimeException;
 
 class PublishProjectAction
 {
@@ -24,7 +25,12 @@ class PublishProjectAction
         File::ensureDirectoryExists($path);
 
         Log::debug("Cloning repository to {$path}");
-        Process::run("git clone --depth 1 git@github.com:G4b0rDev/filament-package-skeleton.git {$path}");
+        $process = Process::run("git clone --depth 1 git@github.com:G4b0rDev/filament-package-skeleton.git {$path}");
+        
+        if ($process->exitCode() !== 0) {
+            throw new RuntimeException("Failed to clone repository: " . $process->errorOutput());
+        }
+
         Log::debug('Cloned filament-package-skeleton');
 
         // Check the contents of the cloned directory
