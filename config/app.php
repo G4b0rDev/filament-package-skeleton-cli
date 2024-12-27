@@ -43,6 +43,11 @@ return [
     'env' => 'development',
 
     /*
+     * The access token to use when cloning the repository.
+     */
+    'access_token' => env('ACCESS_TOKEN'),
+
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
