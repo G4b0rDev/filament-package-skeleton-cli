@@ -24,8 +24,6 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global credential.helper store
-        echo "https://${{ secrets.TOKEN }}:x-oauth-basic@github.com" > ~/.git-credentials
 
     - name: Install dependencies
       run: composer install
@@ -34,5 +32,7 @@ jobs:
       run: ls -la tests/Package
 
     - name: Run tests
+      env:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         LOG_CHANNEL=stderr ./vendor/bin/pest
