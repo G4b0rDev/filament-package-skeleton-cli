@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions\StubHandlers;
 
 use Binafy\LaravelStub\Facades\LaravelStub;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class MetaStubHandler extends BaseStubHandler
@@ -21,7 +20,6 @@ class MetaStubHandler extends BaseStubHandler
     protected function publishReadme(): void
     {
         $stub = "{$this->basePath}/README.md";
-        Log::debug('Readme exists: ' . file_exists($stub));
 
         LaravelStub::from($stub)
             ->to($this->basePath)

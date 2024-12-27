@@ -24,8 +24,6 @@ class PublishProjectAction
 
         File::ensureDirectoryExists($path);
 
-        Log::debug("Cloning repository to {$path}");
-
         $token = config('app.access_token');
         $cloneCommand = $token
             ? "git clone --depth 1 https://{$token}:x-oauth-basic@github.com/G4b0rDev/filament-package-skeleton.git {$path}"
@@ -34,7 +32,7 @@ class PublishProjectAction
         $process = Process::run($cloneCommand);
 
         if ($process->exitCode() !== 0) {
-            throw new RuntimeException('Failed to clone repository: ' . $process->errorOutput());
+            throw new RuntimeException('Failed to clone repository: '.$process->errorOutput());
         }
 
         Log::debug('Cloned filament-package-skeleton');
